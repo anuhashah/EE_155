@@ -1,0 +1,134 @@
+/******************************************************************************
+
+Write a program that takes user input describing a playing card in the following shorthand notation:
+
+A
+Ace
+
+2 ... 10  
+Card values
+
+J
+Jack
+
+Q
+Queen
+
+K
+King
+
+D
+Diamonds
+
+H
+Hearts
+
+S
+Spades
+
+C
+Clubs
+
+Your program should print the full description of the card. For example,
+
+Enter the card notation: QS 
+Queen of Spades
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    string card;
+    string val;
+    string suit;
+    
+    cout << "Enter card(i.e. Queen of Spades = QS): ";
+    cin >> card;
+    
+    if (card.length() == 3)
+    {
+        val = card.substr(0,2);
+        suit = card.substr(2,1);
+        if (val == "10")
+        {
+            cout << "Ten of ";
+        }
+    }
+    else
+    {
+        val = card.substr(0,1);
+        suit = card.substr(1,1);
+        if(val == "A")
+        {
+            cout << "Ace of ";
+        }
+        else if(val == "2")
+        {
+            cout << "Two of ";
+        }
+        else if(val == "3")
+        {
+            cout << "Three of ";
+        }
+        else if(val == "4")
+        {
+            cout << "Four of ";
+        }
+        else if(val == "5")
+        {
+            cout << "Five of ";
+        }
+        else if(val == "6")
+        {
+            cout << "Six of ";
+        }
+        else if(val == "7")
+        {
+            cout << "Seven of ";
+        }
+        else if(val == "8")
+        {
+            cout << "Eight of ";
+        }
+        else if(val == "9")
+        {
+            cout << "Nine of ";
+        }
+        else if(val == "J")
+        {
+            cout << "Jack of ";
+        }
+        else if(val == "Q")
+        {
+            cout << "Queen of ";
+        }
+        else if(val == "K")
+        {
+            cout << "King of ";
+        }
+    }
+    if (suit == "D")
+    {
+        cout << "Diamonds";
+    }
+    else if (suit == "H")
+    {
+        cout << "Hearts";
+    }
+    else if (suit == "S")
+    {
+        cout << "Spades";
+    }
+    else if (suit == "C")
+    {
+        cout << "Clubs";
+    }
+    
+    return 0;
+}
+
+
