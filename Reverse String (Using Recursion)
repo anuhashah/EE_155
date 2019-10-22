@@ -1,0 +1,38 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+/*
+Problem E5.21 from the textbook. (Recursive function to reverse a string.)
+Write a recursive functionstring reverse(string str)
+that computes the reverse of a string. For example, reverse("flow") should return "wolf". Hint: 
+Reverse the substring starting at the second character, 
+then add the first character at the end. For example, to reverse "flow", 
+first reverse "low" to "wol", then add the "f" at the end.
+*/
+
+
+string reverse(string str)
+{
+    string c = "";
+    if( str.length() == 1)  // end condtion to stop recursion
+    {
+        return str;
+    }
+    else
+    {
+        c += reverse(str.substr(1)); //repeats until last letter is reached
+        c += str.substr(0,1); //adds first letter to the end
+    }
+    return c;
+}
+
+int main() {
+
+   string user_str = "";
+   cout << "Enter a string to reverse (NO spaces): ";
+   cin >> user_str;
+
+   cout << "Reversed string is: " << reverse(user_str) << endl;
+
+}
