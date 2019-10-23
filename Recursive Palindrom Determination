@@ -1,0 +1,52 @@
+/******************************************************************************
+Write a recursive function
+bool is_palindrome(string str)
+that returns true if str is a palindrome, that is, a word that is the same when reversed. 
+Examples of palindrome are “deed”, “rotor”, or “aibohphobia”. 
+Hint: A word is a palindrome if the first and last letters match and the remainder is also a palindrome.
+*******************************************************************************/
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool is_palindrome(string str)
+{
+    bool yes = true;
+    string first = str.substr(0, 1);
+    string last = str.substr((str.length() - 1), 1);
+    int length = str.length()-2;
+    string pali = str.substr(1, length);
+    
+    if(first == last)
+    {
+        while(length == 0)
+        {
+            return yes;
+        }
+        while(length == -1)
+        {
+            return yes;
+        }
+        is_palindrome(pali);
+    }
+    else
+    {
+        yes = false;
+        return yes;
+    }
+    return yes;
+}
+
+int main()
+{
+    string input; 
+    
+    cout << "Enter a word to determine if it is a palindrome: ";
+    cin >> input;
+    cout << input << endl;
+
+    cout << "Is the word a palindrome? (1 = yes, 0 = no): " << is_palindrome(input) << endl;
+    
+    return 0;
+}
