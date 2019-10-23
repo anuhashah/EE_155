@@ -1,0 +1,44 @@
+/******************************************************************************
+E5.23 Use recursion to implement a function bool find(string str, string match) 
+that tests whether match is contained in str:
+
+bool b = find("Mississippi", "sip"); // Sets b to true
+
+Hint: If str starts with match, then you are done. 
+If not, consider the string that you obtain by removing the first character.
+*******************************************************************************/
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool find(string str, string match)
+{
+    bool found = false;
+    int m_length = match.length();
+    int s_length = str.length();
+    for(int i = 0; i < s_length; i++)
+    {
+        string test_s = str.substr(i, m_length);
+        if(test_s == match)
+        {
+            found = true;
+            return found;
+        }
+    }
+    return found;
+}
+
+int main()
+{
+    string str;
+    string match;
+    
+    cout << "Input a word, and a match you want to find within that word: ";
+    cin >> str >> match;
+    cout << endl;
+    
+    cout << "There was a match(1) or There was not a match(0): " << find(str, match) << endl;
+
+    return 0;
+}
