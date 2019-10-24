@@ -1,0 +1,91 @@
+/******************************************************************************
+Roman to Arabic
+
+total = 0
+str = roman number string
+While str is not empty
+   If str has length 1, or value(first character of str) is at least value(second character of str)
+      Add value(first character of str) to total.
+      Remove first character from str.
+   Else
+      difference = value(second character of str) - value(first character of str)
+      Add difference to total.
+      Remove first character and second character from str.
+*******************************************************************************/
+
+#include <iostream>
+using namespace std;
+
+int arabic(string& roman)
+{
+    int total = 0;
+    while (roman != "")
+    {
+        string first = roman.substr(0,1);
+        string second = roman.substr(1,1);
+        
+        int f_val = 0;
+        int s_val = 0;
+        if (first == "M" || second == "M")
+        {
+            f_val = 1000;
+            s_val = 1000;
+        }
+        else if (first == "D" || second == "D")
+        {
+            f_val = 500;
+            s_val = 500;
+        }
+        else if (first == "C" || second == "C")
+        {
+            f_val = 100;
+            s_val = 100;
+        }
+        else if (first == "L" || second == "L")
+        {
+            f_val = 50;
+            s_val = 50;
+        }
+        else if (first == "X" || second == "X")
+        {
+            f_val = 10;
+            s_val = 10;
+        }
+        else if (first == "V" || second == "V")
+        {
+            f_val = 5;
+            s_val = 5;
+        }
+        else if (first == "I" || second == "I")
+        {
+            f_val = 1;
+            s_val = 1;
+        }
+
+        if(roman.length() == 1 || f_val >= s_val)
+        {
+            total += f_val;
+            roman = roman.substr(1, roman.length()-1);
+        }
+        else
+        {
+            int difference = s_val - f_val;
+            total += difference;
+            roman = roman.substr(2, roman.length()-2);
+        }
+    }
+    return total;
+}
+
+int main()
+{
+    string n;
+    
+    cout << "Enter a Roman Numeral: ";
+    cin >> n;
+    cout << endl;
+    
+    cout << "Arabic number: " << arabic(n) << endl;
+
+    return 0;
+}
