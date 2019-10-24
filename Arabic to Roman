@@ -16,7 +16,6 @@ string roman_digit(int n, string a, string b, string c)
         case 7: rom = b + a + a; return rom;
         case 8: rom = b + a + a + a; return rom;
         case 9: rom = a + c; return rom;
-        case 10: rom = c; return rom;
     }
 }
 
