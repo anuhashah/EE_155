@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+string roman_digit(int n, string a, string b, string c)
+{
+    string rom = "";
+    switch (n)
+    {
+        case 0: break;
+        case 1: rom = a; return rom;
+        case 2: rom = a + a; return rom;
+        case 3: rom = a + a + a; return rom;
+        case 4: rom = a + b; return rom;
+        case 5: rom = b; return rom;
+        case 6: rom = b + a; return rom;
+        case 7: rom = b + a + a; return rom;
+        case 8: rom = b + a + a + a; return rom;
+        case 9: rom = a + c; return rom;
+        case 10: rom = c; return rom;
+    }
+}
+
+int main()
+{
+    int n;
+    cout<<"Type in a year: ";
+    cin >> n;
+    cout << endl;
+    
+    string roman_ones = roman_digit(n % 10, "I", "V", "X");
+    n = n / 10;
+    string roman_tens = roman_digit(n % 10, "X", "L", "C");
+    n = n / 10;
+    string roman_hund = roman_digit(n % 10, "C", "D", "M");
+    n = n / 10;
+    string roman_thou = roman_digit(n % 10, "M", "M", "M");
+    
+    cout << "The roman numeral is: " << roman_thou << roman_hund << roman_tens << roman_ones << endl;
+    
+    return 0;
+}
