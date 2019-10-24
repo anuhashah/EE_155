@@ -10,7 +10,7 @@ While str is not empty
    Else
       difference = value(second character of str) - value(first character of str)
       Add difference to total.
-      Remove first character and second character from str.
+      Remove first character and second character from str. 
 *******************************************************************************/
 
 #include <iostream>
