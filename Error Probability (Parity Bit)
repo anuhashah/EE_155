@@ -8,7 +8,7 @@ Write your code in this editor and press "Run" button to compile and execute it.
 
 #include <iostream>
 #include <cmath>
-#include <string>
+#include<iomanip>
 
 using namespace std;
 
@@ -42,66 +42,28 @@ void undetected_error(double n, double p)
 
 void print(double n, double p)
 {
-    cout << "(For n = " << n << " and p = " << p << ")" << endl;
-    error_free(n, p);
-    error_detected(n, p);
-    undetected_error(n, p);
-    cout << endl;
+        cout << "(For n = " << n << " and p = " << p << ")" << endl;
+        error_free(n, p);
+        error_detected(n, p);
+        undetected_error(n, p);
+        cout << endl;
 }
 
 int main()
 {
-    //n = 8, 16, 32, 64; p = 1-10^-6
-    double ex = pow(10,-6);
-    double p = 1 - ex;
-    
-    double n = 8;
-    print(n, p);
-    n = 16;
-    print(n, p);
-    n = 32;
-    print(n, p);
-    n = 64;
-    print(n, p);
-    
-    //n = 8, 16, 32, 64; p = 1-10^-7
-    ex = pow(10,-7);
-    p = 1 - ex;
-    
-    n = 8;
-    print(n, p);
-    n = 16;
-    print(n, p);
-    n = 32;
-    print(n, p);
-    n = 64;
-    print(n, p);
-    
-    //n = 8, 16, 32, 64; p = 1-10^-8
-    ex = pow(10,-8);
-    p = 1 - ex;
-    
-    n = 8;
-    print(n, p);
-    n = 16;
-    print(n, p);
-    n = 32;
-    print(n, p);
-    n = 64;
-    print(n, p);
-    
-    //n = 8, 16, 32, 64; p = 1-10^-9
-    ex = pow(10,-9);
-    p = 1 - ex;
-    
-    n = 8;
-    print(n, p);
-    n = 16;
-    print(n, p);
-    n = 32;
-    print(n, p);
-    n = 64;
-    print(n, p);
+    double n[4] = {8, 16, 32, 64};
+    int k = -6;
+    for(int i = 0; i < 4; i++)
+    {
+        double ex = pow(10,k); 
+        double p = 1 - ex;
+        for(int j = 0; j < 4; j++)
+        {
+            double num = n[j];
+            print(num, p);
+        }
+        k--;
+    }
     
     return 0;
 }
