@@ -1,0 +1,107 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <cmath>
+#include <string>
+
+using namespace std;
+
+void error_free(double n, double p)
+{
+    double no_error = pow(p, n+1);
+    cout << "Error free probability: " << no_error << endl;
+}
+
+void error_detected(double n, double p)
+{
+    double error = 0;
+    for(int i = 1; i <= n+1; i++)
+    {
+        error+=((n+1)/i)*pow(p, n+1-i)*pow(1-p,i);
+        i++;
+    }
+    cout << "Error detected probability: " << error << endl;
+}
+
+void undetected_error(double n, double p)
+{
+    double undetected = 0;
+    for(int i = 2; i <= n; i++)
+    {
+        undetected+=((n+1)/i)*pow(p, n+1-i)*pow(1-p,i);
+        i++;
+    }
+    cout << "Undetected error probability: " << undetected << endl;
+}
+
+void print(double n, double p)
+{
+    cout << "(For n = " << n << " and p = " << p << ")" << endl;
+    error_free(n, p);
+    error_detected(n, p);
+    undetected_error(n, p);
+    cout << endl;
+}
+
+int main()
+{
+    //n = 8, 16, 32, 64; p = 1-10^-6
+    double ex = pow(10,-6);
+    double p = 1 - ex;
+    
+    double n = 8;
+    print(n, p);
+    n = 16;
+    print(n, p);
+    n = 32;
+    print(n, p);
+    n = 64;
+    print(n, p);
+    
+    //n = 8, 16, 32, 64; p = 1-10^-7
+    ex = pow(10,-7);
+    p = 1 - ex;
+    
+    n = 8;
+    print(n, p);
+    n = 16;
+    print(n, p);
+    n = 32;
+    print(n, p);
+    n = 64;
+    print(n, p);
+    
+    //n = 8, 16, 32, 64; p = 1-10^-8
+    ex = pow(10,-8);
+    p = 1 - ex;
+    
+    n = 8;
+    print(n, p);
+    n = 16;
+    print(n, p);
+    n = 32;
+    print(n, p);
+    n = 64;
+    print(n, p);
+    
+    //n = 8, 16, 32, 64; p = 1-10^-9
+    ex = pow(10,-9);
+    p = 1 - ex;
+    
+    n = 8;
+    print(n, p);
+    n = 16;
+    print(n, p);
+    n = 32;
+    print(n, p);
+    n = 64;
+    print(n, p);
+    
+    return 0;
+}
