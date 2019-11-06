@@ -65,7 +65,7 @@ void undetected_error(double n, double p)
         total += factorial(n, p, k)*pow(p, n+1-k)*pow(1-p,k);
         k++;
     }
-    cout << "Error detected probability: " << total << endl;
+    cout << "Undetected error probability: " << total << endl;
 }
 
 void print(double n, double p, int expo)
