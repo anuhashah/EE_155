@@ -18,8 +18,7 @@ void error_free(double n, double p)
     cout << "Error free probability: " << no_error << endl;
 }
 
-    //Detected: sum (n+1)!/(k!(n+1-k)!); k = 1, 3, 5, ..., n+1
-void error_detected(double n, double p)
+double factorial(double n, double p, int k)
 {
     double total = 0;
     double n_fact = 1;
@@ -27,23 +26,30 @@ void error_detected(double n, double p)
     {
         n_fact *= i;
     }
-    
+    double denom = 0;
+    double x = 1;
+    for(int i = 1; i <= k; i++)
+    {
+        x *= i; // k!
+    }
+    double y = 1;
+    for(int i = 1; i <= (n+1-k); i++)
+    {
+        y *= i; // (n+1-k)!
+    }
+    denom += x*y;
+    total += n_fact/denom;
+    return total;
+}
+
+    //Detected: sum (n+1)!/(k!(n+1-k)!); k = 1, 3, 5, ..., n+1
+void error_detected(double n, double p)
+{
+    double total = 0;
     
     for(int k = 1; k <= n+1; k++)
     {
-        double denom = 0;
-        double x = 1;
-        for(int i = 1; i <= k; i++)
-        {
-            x *= i; // k!
-        }
-        double y = 1;
-        for(int i = 1; i <= (n+1-k); i++)
-        {
-            y *= i; // (n+1-k)!
-        }
-        denom += x*y;
-        total += ((n_fact)/denom)*pow(p, n+1-k)*pow(1-p,k);
+        total += factorial(n, p, k)*pow(p, n+1-k)*pow(1-p,k);
         k++;
     }
     cout << "Error detected probability: " << total << endl;
@@ -53,28 +59,10 @@ void error_detected(double n, double p)
 void undetected_error(double n, double p)
 {
     double total = 0;
-    double n_fact = 1;
-    for(int i = 1; i <= (n+1); i++)
-    {
-        n_fact *= i;
-    }
-    
     
     for(int k = 2; k <= n; k++)
     {
-        double denom = 0;
-        double x = 1;
-        for(int i = 1; i <= k; i++)
-        {
-            x *= i; // k!
-        }
-        double y = 1;
-        for(int i = 1; i <= (n+1-k); i++)
-        {
-            y *= i; // (n+1-k)!
-        }
-        denom += x*y;
-        total += ((n_fact)/denom)*pow(p, n+1-k)*pow(1-p,k);
+        total += factorial(n, p, k)*pow(p, n+1-k)*pow(1-p,k);
         k++;
     }
     cout << "Error detected probability: " << total << endl;
