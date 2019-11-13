@@ -1,0 +1,68 @@
+/*A set of integers can be represented using a 1D array of type int with the additional condition that no
+value appears in the array multiple times. Assume that two sets are represented in this manner as
+arrays a[] and b[] with n_a and n_b elements, respectively. Write a function that computes the union
+of these two sets and stores it in a similar manner as an array c[] with n_c elements.
+*/
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+void remove_element(int x[], int& n_x, int loc_to_remove)
+{
+	for(int i = loc_to_remove; i < n_x - 1; i++)
+    {
+        x[i] = x[i + 1];
+    }
+	n_x--;
+}
+
+void remove_duplicates(int x[], int& n_x)
+{
+    for(int i = 0; i < n_x; i++)
+    {
+        for(int j = i+1; j < n_x; j++)
+        {
+            if(x[j] == x[i])
+            {
+                remove_element(x, n_x, j);
+                j--;
+            }
+        }
+    }
+}
+
+void union_of(int a[], int& n_a, int b[], int& n_b)
+{
+    int n_c = n_a + n_b;
+    int c[n_c];
+    for (int i = 0; i < n_a; i++)
+    {
+        c[i] = a[i];
+    }
+    for(int i = n_a; i < n_c; i++)
+    {
+        c[i] = b[i];
+    }
+    remove_duplicates(c, n_c);
+    for(int i = 0; i < n_c; i++)
+    {
+        cout << c[i] << " ";
+    }
+}
+
+int main()
+{
+    int n_a = 8;
+    int n_b = 7;
+    int a[] = {0, 1, 4, 4, 7, 9, 9, 10};
+    int b[] = {7, 6, 3, 2, 1, 9, 5};
+    
+    remove_duplicates(a, n_a);
+    remove_duplicates(b, n_b);
+    union_of(a, n_a, b, n_b);
+    
+    
+    return 0;
+}
