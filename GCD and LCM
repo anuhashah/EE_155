@@ -1,0 +1,50 @@
+/*Write a function that computes the greatest common divisor (GCD) of two integers x and y, where
+x>0 and y>0, using Euclid’s algorithm (for definition of GCD and Euclid’s algorithm, see
+https://en.wikipedia.org/w/index.php?title=Greatest_common_divisor&oldid=803602562).
+
+Using the above function for GCD, write a function that computes the least common multiple (LCM)
+of two positive integers. (See
+https://en.wikipedia.org/w/index.php?title=Least_common_multiple&oldid=803785022.)
+*/
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int gcd(int a, int b) 
+{ 
+    // Everything divides 0  
+    if (a == 0) 
+       return b; 
+    if (b == 0) 
+       return a; 
+   
+    // base case 
+    if (a == b) 
+        return a; 
+   
+    // a is greater 
+    if (a > b) 
+        return gcd(a-b, b); 
+    return gcd(a, b-a); 
+} 
+
+int lcm(int a, int b)
+{
+    int lcm = abs(a*b)/gcd(a, b);
+    return lcm;
+}
+
+int main()
+{
+    int a = 0;
+    int b = 0;
+    cout << "Please input two integers you would like to find the Greatest Common Denominator of: ";
+    cin >> a >> b;
+    
+    cout<< "GCD of " << a << " and " << b << " is " << gcd(a, b) << endl; 
+    cout << "LCM of " << a << " and " << b <<" is " << lcm(a, b) << endl;
+    
+    return 0;
+}
